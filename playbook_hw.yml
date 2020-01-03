@@ -1,0 +1,10 @@
+---
+- name: Add user & key to remote host
+  hosts: rhl_srv
+  become: yes
+  tasks: 
+  - name: Add user to remote hosts
+    user: name=cuser01 groups=wheel shell=/bin/bash password=t607opmw
+  - name: Add key to new user
+    authorized_key: user=cuser01 key="{{ lookup('file', "~/ansible/ckey_rsa.pub") }}"
+

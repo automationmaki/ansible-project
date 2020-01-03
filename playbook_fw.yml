@@ -1,0 +1,10 @@
+---
+- name: Open port in RHL
+  hosts: rhl_srv
+  become: yes
+  tasks:
+  - name: Open 80/433 port in RHL
+    firewalld: state=enabled service={{ item }} permanent=yes immediate=yes
+    loop:
+    - http
+    - https

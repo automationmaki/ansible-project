@@ -1,0 +1,12 @@
+---
+- name: remove user
+  hosts: rhl_srv
+  become: yes
+  tasks:
+  - name: remove user
+    user: name=test01 state=absent
+  - name: кremove homedir
+    file: 
+     state: absent
+     path: "/home/test01"
+     
